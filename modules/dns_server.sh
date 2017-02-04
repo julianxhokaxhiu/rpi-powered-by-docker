@@ -37,6 +37,10 @@ docker run \
 systemctl stop systemd-resolved.service
 systemctl disable systemd-resolved.service
 
+# Replace /etc/resolv.conf with a valid one
+rm /etc/resolv.conf
+systemctl restart dhcpcd
+
 # Install DNS Server
 echo ">> Running DNS Server..."
 docker run \
