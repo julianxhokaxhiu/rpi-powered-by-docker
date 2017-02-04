@@ -34,12 +34,12 @@ docker run \
     robbertkl/ipv6nat:latest-armhf &>/dev/null
 
 # Stop and Disable systemd-resolved to free port 53 tcp/udp
-systemctl stop systemd-resolved.service
-systemctl disable systemd-resolved.service
+systemctl stop systemd-resolved.service &>/dev/null
+systemctl disable systemd-resolved.service &>/dev/null
 
 # Replace /etc/resolv.conf with a valid one
-rm /etc/resolv.conf
-systemctl restart dhcpcd
+rm /etc/resolv.conf &>/dev/null
+systemctl restart dhcpcd &>/dev/null
 
 # Install DNS Server
 echo ">> Running DNS Server..."
