@@ -9,6 +9,16 @@ API_KEY=""
 CRONTAB_TIME="0 10 * * *"
 ENABLE_ADBLOCK=false
 
+# Check if systemd-resolve is running, and if yes disable the Stub listener in order to get the port 53/udp free, forever
+if [ `pstree -p | grep systemd-resolve` ]; then
+  echo ">> It seems your system is running systemd-resolve. In order to continue this script MUST disable the Stub listener in order to free up port 53/udp."
+
+  # Stop and Disable systemd-resolved, permanently
+  echo ">> Disabling permanently systemd-resolved Stub listener..."
+  sed -i 's/#DNSStubListener=udp/DNSStubListener=no/g' /etc/systemd/resolved.conf &>/dev/null
+  systemctl restart systemd-resolved.service
+fi
+
 # Prepare the DNS Server data folder
 echo ">> Creating /srv/data/$DNSSERVER_DOMAIN folder..."
 mkdir -p "/srv/data/$DNSSERVER_DOMAIN" &>/dev/null
@@ -32,14 +42,6 @@ docker run \
     -v /lib/modules:/lib/modules:ro \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
     robbertkl/ipv6nat:latest-armhf &>/dev/null
-
-# Stop and Disable systemd-resolved to free port 53 tcp/udp
-systemctl stop systemd-resolved.service &>/dev/null
-systemctl disable systemd-resolved.service &>/dev/null
-
-# Replace /etc/resolv.conf with a valid one
-rm /etc/resolv.conf &>/dev/null
-systemctl restart dhcpcd &>/dev/null
 
 # Install DNS Server
 echo ">> Running DNS Server..."
