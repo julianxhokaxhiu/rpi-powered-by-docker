@@ -63,7 +63,7 @@ docker run \
   -v /srv/certs:/etc/nginx/certs:rw \
   --volumes-from docker-auto-reverse-proxy \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  hermanzdosilovic/rpi-docker-letsencrypt-nginx-proxy-companion &>/dev/null
+  budrom/rpi-letsencrypt-nginx-proxy-companion &>/dev/null
 
 # Autoupdate Dockers from time to time and cleanup old images
 echo ">> Running Docker Auto-Update manager..."
@@ -72,7 +72,7 @@ docker run \
   --name=docker-autoupdate \
   -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  talmai/rpi-watchtower --cleanup &>/dev/null
+  talmai/rpi-watchtower 6 --cleanup --apiversion=1.24 &>/dev/null
 
 # Print friendly done message
 echo "-----------------------------------------------------"

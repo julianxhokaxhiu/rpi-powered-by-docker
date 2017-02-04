@@ -5,9 +5,9 @@ Arch Linux ARM setup script to obtain a full RPI with Automatic Reverse Proxy wi
 - IPv4/IPv6 support ( Dual Stack )
 - [Git](https://git-scm.com/)
 - [Docker](https://www.docker.com/)
-- [talmai/rpi-watchtower](https://hub.docker.com/r/talmai/rpi-watchtower) as the Docker auto-update manager
-- [braingamer/nginx-proxy-arm](https://hub.docker.com/r/braingamer/nginx-proxy-arm/) as Reverse Proxy
-- [hermanzdosilovic/rpi-docker-letsencrypt-nginx-proxy-companion](https://hub.docker.com/r/hermanzdosilovic/rpi-docker-letsencrypt-nginx-proxy-companion/) as automatic Let's Encrypt provisioner ( official companion docker for braingamer/nginx-proxy-arm )
+- [talmai/rpi-watchtower](https://github.com/talmai/rpi-watchtower) as the Docker auto-update manager
+- [braingamer/nginx-proxy-arm](https://github.com/Brain-Gamer/nginx-proxy) as Reverse Proxy
+- [budrom/rpi-letsencrypt-nginx-proxy-companion](https://github.com/budrom/docker-rpi-letsencrypt-nginx-proxy-companion) as automatic Let's Encrypt provisioner ( official companion docker for braingamer/nginx-proxy-arm )
 - [apache-nginx-referral-spam-blacklist](https://github.com/Stevie-Ray/apache-nginx-referral-spam-blacklist) preloaded for every host
 
 ## Modules
