@@ -31,7 +31,7 @@ docker run \
     --net=host \
     -v /lib/modules:/lib/modules:ro \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
-    robbertkl/ipv6nat:armhf &>/dev/null
+    robbertkl/ipv6nat:latest-armhf &>/dev/null
 
 # Install DNS Server
 echo ">> Running DNS Server..."
