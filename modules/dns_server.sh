@@ -33,6 +33,10 @@ docker run \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
     robbertkl/ipv6nat:latest-armhf &>/dev/null
 
+# Stop and Disable systemd-resolved to free port 53 tcp/udp
+systemctl stop systemd-resolved.service
+systemctl disable systemd-resolved.service
+
 # Install DNS Server
 echo ">> Running DNS Server..."
 docker run \
