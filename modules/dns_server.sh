@@ -60,7 +60,7 @@ docker run \
     -p 53:53 \
     -p 53:53/udp \
     -v "/srv/data/$DNSSERVER_DOMAIN:/srv/data" \
-    julianxhokaxhiu/docker-powerdns:armhf &>/dev/null
+    julianxhokaxhiu/docker-powerdns:latest-armhf &>/dev/null
 
 # Wait until the docker is up and running
 echo -n ">> Waiting for DNS Server to start..."
